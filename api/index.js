@@ -13,6 +13,7 @@ mongoose.connect('mongodb+srv://thomasstibling:root@api.z6z9txp.mongodb.net/?ret
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const userRoutes = require('./routes/users')
+const postRoutes = require('./routes/posts')
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.use(cors({
   origin: 'http://localhost:5173'
 }))
 app.use('/users', userRoutes)
+app.use('/posts', postRoutes)
 
 app.get('/', (req, res) => {
   res.json({

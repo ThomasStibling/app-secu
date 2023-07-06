@@ -5,9 +5,9 @@
       <a class="navbar-brand">Hess tagram</a>
       <div class="navbar" id="navbarSupportedContent">
           <div class="navbar-nav mr-auto">
-              <RouterLink to="/" class="nav-item nav-link">Sign In</RouterLink>
-              <RouterLink to="/signup" class="nav-item nav-link">Sign Up</RouterLink>
-              <!--<RouterLink v-if="user" to="/home" class="nav-item nav-link">Home</RouterLink>-->
+              <RouterLink v-if="!this.user" to="/" class="nav-item nav-link">Sign In</RouterLink>
+              <RouterLink v-if="!this.user" to="/signup" class="nav-item nav-link">Sign Up</RouterLink>
+              <RouterLink v-if="this.user" to="/home" class="nav-item nav-link">Home</RouterLink>
               <button v-if="this.user" @click="logout">Log Out</button>
           </div>
       </div>
@@ -27,7 +27,6 @@ import { mapState, mapActions } from 'pinia'
 export default {
   data() {
     return {
-      //connect: false,
     };
   },
   computed: {
@@ -43,15 +42,11 @@ export default {
       const jwt = localStorage.getItem('token');
       await this.getUser(jwt);
       console.log("app vue "+this.user)
-      /*if(this.user !== null){
-        this.connect=true
-      }*/
     },
 
     logout() {
       localStorage.removeItem('token');
       this.logoutUser();
-      //this.connect=false
       console.log(this.user)
       this.$router.push("/")
     }
