@@ -2,7 +2,7 @@
   <header>
     <div id="nav">
     <nav class="container navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand">Hess tagram</a>
+      <a class="navbar-brand">Social Network</a>
       <div class="navbar" id="navbarSupportedContent">
           <div class="navbar-nav mr-auto">
               <RouterLink v-if="!this.user" to="/" class="nav-item nav-link">Sign In</RouterLink>

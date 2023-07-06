@@ -15,7 +15,6 @@ export default {
     postedBy: null,
     text: null,
     like: 0,
-    //onLike: null,
   },
 }
 </script>

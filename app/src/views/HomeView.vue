@@ -1,14 +1,19 @@
 <template>
-    <button class="btn btn-primary">+ New Post</button>
-    <li v-for="post in posts">
-        <PostCard :postedBy="post.mail" :text="post.text" :like="post.like.length"/>
-    </li>
+    <div v-if="user" class="post">
+        <button @click="goToPost()" class="btn btn-primary">+ New Post</button>
+            <li v-for="post in posts">
+                <PostCard :postedBy="post.mail" :text="post.text" :like="post.like.length"/>
+            </li>
+    </div>
+    <p v-else>Veuillez vous connecter pour accèder à cette page</p>
+
 </template>
 
 <script>
 import axios from "axios"
 import PostCard from '../components/PostCard.vue'
 import { usePostStore } from '../stores/post.js'
+import { useUserStore } from '../stores/user.js'
 import { mapState, mapActions } from 'pinia'
 
 export default {
@@ -26,10 +31,15 @@ export default {
         }
     },
     computed: {
+        ...mapState(useUserStore,['user']),
         ...mapState(usePostStore, ['posts']),
     },
     methods: {
         ...mapActions(usePostStore, ['getAllPosts','addLike']),
+
+        goToPost(){
+            this.$router.push('/post');
+        }
         /*addLike(postId){
             this.addLike(postId)
         }*/
@@ -40,6 +50,12 @@ export default {
 <style>
     li {
         list-style-type: none;
+    }
+
+    .post{
+        position: absolute;
+        left: 35%;
+
     }
 </style>
 

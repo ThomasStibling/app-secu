@@ -1,15 +1,16 @@
 <template>
   <div>
     <h1>Sign In</h1>
-    <form @submit.prevent="onSubmit">
+    <form v-if="!user" @submit.prevent="onSubmit">
       <label for="email">E-mail :</label>
       <input type="email" id="email" v-model="email" required><br><br>
 
       <label for="password">Password :</label>
       <input type="password" id="password" v-model="password" required><br><br>
 
-      <button type="submit">Sign In</button>
+      <button  class="btn btn-primary" type="submit">Sign In</button>
     </form>
+    <p v-else>Vous êtes deja connecté</p>
   </div>
 </template>
 
