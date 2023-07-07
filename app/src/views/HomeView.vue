@@ -2,7 +2,7 @@
     <div v-if="user" class="post">
         <button @click="goToPost()" class="btn btn-primary">+ New Post</button>
             <li v-for="post in posts">
-                <PostCard :postedBy="post.mail" :text="post.text" :like="post.like.length"/>
+                <PostCard :postId="post._id" :postedBy="post.mail" :text="post.text" :like="post.like.length"/>
             </li>
     </div>
     <p v-else>Veuillez vous connecter pour accèder à cette page</p>
@@ -35,14 +35,12 @@ export default {
         ...mapState(usePostStore, ['posts']),
     },
     methods: {
-        ...mapActions(usePostStore, ['getAllPosts','addLike']),
+        ...mapActions(usePostStore, ['getAllPosts']),
 
         goToPost(){
             this.$router.push('/post');
         }
-        /*addLike(postId){
-            this.addLike(postId)
-        }*/
+
     }
 }
 </script>

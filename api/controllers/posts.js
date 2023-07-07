@@ -16,7 +16,6 @@ const getPostsByUser = (req, res)=> {
 
 const getPost = (req, res)=> {
   const id = req.params.id
-  console.log(req.foo)
   Post.findOne({
     _id: id
   }).then((post)=>{

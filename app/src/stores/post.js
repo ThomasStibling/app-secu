@@ -8,6 +8,16 @@ const usePostStore = defineStore('post', {
   }),
 
   actions: {
+    async getPost(postId){
+      try {
+        const response = await axios.get('http://localhost:4200/posts/'+postId);
+        console.log(response.data)
+        this.post = response.data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
     async getAllPosts() {
       try {
         const response = await axios.get('http://localhost:4200/posts')
@@ -39,16 +49,34 @@ const usePostStore = defineStore('post', {
       }
     },
 
-    /*async addLike(post) {
+    async likePost(userId) {
       try {
-        const response = await axios.patch('http://localhost:4200/posts/'+post._id,post)
-        console.log(response.data)
-        //this.post=post
+        const likes = this.post.like
+        likes.push(userId)
+        await axios.patch("http://localhost:4200/posts/" + this.post._id, { like: likes }) 
+        console.log("post like")
       } catch (error) {
         console.log(error)
       }
-    },*/
-  }
+    },
+
+    async unlikePost(userId) {
+    console.log("dans le post store")
+      try {
+        console.log("debut unlike")
+        const likes = this.post.like
+        let index = likes.indexOf(userId);
+        if (index !== -1) {
+          likes.splice(index, 1);
+        } 
+        console.log("avant axios request")
+        await axios.patch("http://localhost:4200/posts/" + this.post._id, { like: likes })
+        console.log("post unlike")
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
 })
 
 export { usePostStore }

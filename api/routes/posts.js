@@ -11,6 +11,8 @@ router.get('/byUser/:id', ctrl.getPostsByUser)
 
 router.post('/', ctrl.postPost)
 
+router.patch('/:id', ctrl.patchPost)
+
 router.delete('/:id', ctrl.deletePost)
 
 module.exports = router

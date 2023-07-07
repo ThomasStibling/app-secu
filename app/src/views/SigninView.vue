@@ -8,7 +8,7 @@
       <label for="password">Password :</label>
       <input type="password" id="password" v-model="password" required><br><br>
 
-      <button  class="btn btn-primary" type="submit">Sign In</button>
+      <button class="btn btn-primary" type="submit">Sign In</button>
     </form>
     <p v-else>Vous êtes deja connecté</p>
   </div>
