@@ -1,4 +1,5 @@
 const Post = require('../models/Post')
+const checkPostSchema = require('../middlewares/checkPostSchema')
 
 const getPosts = (req, res)=> {
   Post.find().then((posts)=>{
